@@ -28,11 +28,11 @@ export default function Home() {
     : [...PROJECTS].reverse().slice(0, VISIBLE_DEFAULT);
 
   return (
-    <div className="min-h-screen bg-background text-foreground flex items-center py-14 md:text-[110%]">
+    <div className="min-h-screen bg-background text-foreground flex items-center py-10 md:py-12 md:text-[114%]">
       <main className="w-full max-w-lg px-8 mx-auto md:max-w-xl md:px-10">
         {/* intro */}
-        <div className="mb-8 md:mb-10">
-          <h1 className="text-xl font-medium tracking-tight text-foreground">
+        <div className="mb-5 md:mb-7">
+          <h1 className="text-xl font-medium text-foreground">
             moeez
           </h1>
           <p className="text-sm text-muted mt-1">software engineer</p>
@@ -70,47 +70,11 @@ export default function Home() {
         </Section>
 
         {/* footer */}
-        <div className="pt-4 border-t border-subtle/40">
-          <div className="flex items-center gap-7 text-sm text-muted">
-            <a
-              href="https://github.com/moeezs"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
-            >
-              github
-            </a>
-            <a
-              href="https://linkedin.com/in/abdulmoeezshaikh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
-            >
-              linkedin
-            </a>
-            <a
-              href="https://instagram.com/abdul_moeez_shaikh"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
-            >
-              instagram
-            </a>
-            {/* <a
-              href="https://x.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors"
-            >
-              x
-            </a> */}
-            <a
-              href="mailto:shaika97@mcmaster.ca"
-              className="hover:text-foreground transition-colors"
-            >
-              email
-            </a>
-          </div>
+        <div className="pt-3 border-t border-subtle/30 flex items-center gap-5 text-xs text-muted">
+          <a href="https://github.com/moeezs" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">github</a>
+          <a href="https://linkedin.com/in/abdulmoeezshaikh" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">linkedin</a>
+          <a href="https://instagram.com/abdul_moeez_shaikh" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">instagram</a>
+          <a href="mailto:shaika97@mcmaster.ca" className="hover:text-foreground transition-colors">email</a>
         </div>
       </main>
     </div>
@@ -126,11 +90,13 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <div className="mb-6 md:mb-8">
-      <p className="text-xs uppercase tracking-widest text-muted mb-3 md:mb-4">
+    <div className="mb-3 md:mb-5">
+      <p className="text-xs text-muted mb-2 md:mb-3 font-medium">
         {title}
       </p>
-      {children}
+      <div className="pl-3 border-l border-subtle/40">
+        {children}
+      </div>
     </div>
   );
 }
@@ -138,16 +104,20 @@ function Section({
 /* role row */
 function RoleItem({ image, role, place, href, period, isLast }: RoleData & { isLast?: boolean }) {
   const content = (
-    <div className={`flex items-center gap-3 text-sm${isLast ? "" : " mb-2"}`}>
+    <div className={`flex items-center gap-5${isLast ? "" : " mb-2"}`}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image}
         alt={place}
-        className="w-5 h-5 rounded-sm object-cover shrink-0"
+        className="w-6 h-6 rounded-sm object-cover shrink-0"
       />
-      <span className="text-muted">{role}</span>
-      <span className="text-foreground">{place}</span>
-      <span className="ml-auto text-xs text-subtle shrink-0">{period}</span>
+      <div className="flex-1 min-w-0">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-sm text-foreground">{place}</span>
+          <span className="text-xs text-subtle shrink-0">{period}</span>
+        </div>
+        <span className="text-xs text-muted line-clamp-1" style={{lineHeight: "1.2"}}>{role}</span>
+      </div>
     </div>
   );
   return href ? (
@@ -166,21 +136,23 @@ function ProjectItem({ image, name, description, href, year, isLast }: ProjectDa
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className={`group flex items-center gap-3${isLast ? "" : " mb-2"}`}
+      className={`group flex items-center gap-5${isLast ? "" : " mb-2"}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={image}
         alt={name}
-        className="w-5 h-5 rounded-sm object-cover shrink-0"
+        className="w-6 h-6 rounded-sm object-cover shrink-0"
       />
-      <div className="flex items-baseline gap-2.5 min-w-0 flex-1">
-        <span className="text-sm text-foreground group-hover:text-accent transition-colors shrink-0">
-          {name}
-        </span>
-        <span className="text-sm text-muted truncate hidden sm:inline">{description}</span>
+      <div className="flex-1 min-w-3">
+        <div className="flex items-center justify-between gap-2">
+          <span className="text-sm text-foreground group-hover:text-accent transition-colors">
+            {name}
+          </span>
+          <span className="text-xs text-subtle shrink-0">{year}</span>
+        </div>
+        <span className="text-xs text-muted line-clamp-1" style={{lineHeight: "1.2"}}>{description}</span>
       </div>
-      <span className="text-xs text-subtle shrink-0 ml-2">{year}</span>
     </a>
   );
 }
