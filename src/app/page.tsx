@@ -1,65 +1,186 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import { PROJECTS, CURRENT_ROLES, PREVIOUS_ROLES } from "./data2";
+
+type ProjectData = {
+  image: string;
+  name: string;
+  description: string;
+  href: string;
+  year: string;
+};
+
+type RoleData = {
+  image: string;
+  role: string;
+  place: string;
+  href?: string;
+  period: string;
+};
+
+const VISIBLE_DEFAULT = 3;
 
 export default function Home() {
+  const [showAll, setShowAll] = useState(false);
+  const visibleProjects = showAll
+    ? [...PROJECTS].reverse()
+    : [...PROJECTS].reverse().slice(0, VISIBLE_DEFAULT);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-background text-foreground flex items-center py-14 md:text-[110%]">
+      <main className="w-full max-w-lg px-8 mx-auto md:max-w-xl md:px-10">
+        {/* intro */}
+        <div className="mb-8 md:mb-10">
+          <h1 className="text-xl font-medium tracking-tight text-foreground">
+            moeez
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+          <p className="text-sm text-muted mt-1">software engineer</p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* currently */}
+        <Section title="currently">
+          {CURRENT_ROLES.map((r, i, arr) => (
+            <RoleItem key={r.place} {...r} isLast={i === arr.length - 1} />
+          ))}
+        </Section>
+
+        {/* previously */}
+        <Section title="previously">
+          {PREVIOUS_ROLES.map((r, i, arr) => (
+            <RoleItem key={r.place} {...r} isLast={i === arr.length - 1} />
+          ))}
+        </Section>
+
+        {/* projects */}
+        <Section title="projects">
+          {visibleProjects.map((p, i, arr) => (
+            <ProjectItem key={p.name} {...p} isLast={i === arr.length - 1} />
+          ))}
+          {PROJECTS.length > VISIBLE_DEFAULT && (
+            <button
+              onClick={() => setShowAll((v) => !v)}
+              className="mt-3 text-xs text-muted hover:text-foreground transition-colors cursor-pointer"
+            >
+              {showAll
+                ? "show less"
+                : `+ ${PROJECTS.length - VISIBLE_DEFAULT} more`}
+            </button>
+          )}
+        </Section>
+
+        {/* footer */}
+        <div className="pt-4 border-t border-subtle/40">
+          <div className="flex items-center gap-7 text-sm text-muted">
+            <a
+              href="https://github.com/moeezs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              github
+            </a>
+            <a
+              href="https://linkedin.com/in/abdulmoeezshaikh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              linkedin
+            </a>
+            <a
+              href="https://instagram.com/abdul_moeez_shaikh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              instagram
+            </a>
+            {/* <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors"
+            >
+              x
+            </a> */}
+            <a
+              href="mailto:shaika97@mcmaster.ca"
+              className="hover:text-foreground transition-colors"
+            >
+              email
+            </a>
+          </div>
         </div>
       </main>
     </div>
+  );
+}
+
+/* section wrapper  */
+function Section({
+  title,
+  children,
+}: {
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="mb-6 md:mb-8">
+      <p className="text-xs uppercase tracking-widest text-muted mb-3 md:mb-4">
+        {title}
+      </p>
+      {children}
+    </div>
+  );
+}
+
+/* role row */
+function RoleItem({ image, role, place, href, period, isLast }: RoleData & { isLast?: boolean }) {
+  const content = (
+    <div className={`flex items-center gap-3 text-sm${isLast ? "" : " mb-2"}`}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={image}
+        alt={place}
+        className="w-5 h-5 rounded-sm object-cover shrink-0"
+      />
+      <span className="text-muted">{role}</span>
+      <span className="text-foreground">{place}</span>
+      <span className="ml-auto text-xs text-subtle shrink-0">{period}</span>
+    </div>
+  );
+  return href ? (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {content}
+    </a>
+  ) : (
+    content
+  );
+}
+
+/* project row */
+function ProjectItem({ image, name, description, href, year, isLast }: ProjectData & { isLast?: boolean }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`group flex items-center gap-3${isLast ? "" : " mb-2"}`}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={image}
+        alt={name}
+        className="w-5 h-5 rounded-sm object-cover shrink-0"
+      />
+      <div className="flex items-baseline gap-2.5 min-w-0 flex-1">
+        <span className="text-sm text-foreground group-hover:text-accent transition-colors shrink-0">
+          {name}
+        </span>
+        <span className="text-sm text-muted truncate hidden sm:inline">{description}</span>
+      </div>
+      <span className="text-xs text-subtle shrink-0 ml-2">{year}</span>
+    </a>
   );
 }
