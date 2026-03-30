@@ -62,6 +62,13 @@ export const PROJECTS = [
     href: "https://craveit-zeta.vercel.app", 
     year: "2025" 
   },
+  {
+    image: "/projects/scatter.png",
+    name: "scatter",
+    description: "fun mini projects exploring new libraries",
+    href: "https://scatter.moeezs.com/",
+    year: "2025"
+  },
   { 
     image: "/projects/recipes-api.png", 
     name: "recipes restful api", 
@@ -82,6 +89,13 @@ export const PROJECTS = [
     description: "ml-based world cup winner predictor", 
     href: "https://world-cup-predictor.vercel.app/", 
     year: "2025" 
+  },
+  {
+    image: "/projects/texit.png",
+    name: "texit",
+    description: "ai-powered latex editor with real-time rendering",
+    href: "https://texit.vercel.app/",
+    year: "2026"
   }
 ];
 
@@ -92,6 +106,13 @@ export const CURRENT_ROLES = [
     place: "mcmaster u", 
     href: "https://www.mcmaster.ca", 
     period: "now" 
+  },
+  {
+    image: "/roles/pareon.png",
+    role: "swe intern",
+    place: "pareon biosystems",
+    href: "https://www.pareonbiosystems.com/",
+    period: "now"
   },
   {
     image: "/roles/deltahacks.png",
