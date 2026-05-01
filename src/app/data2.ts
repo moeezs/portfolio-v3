@@ -96,10 +96,24 @@ export const PROJECTS = [
     description: "ai-powered latex editor with real-time rendering",
     href: "https://texit.vercel.app/",
     year: "2026"
+  },
+  {
+    image: "/projects/kendall.png",
+    name: "kendall",
+    description: "local personal ai agent that sorts files, create files, and chat with them.",
+    href: "https://github.com/moeezs/kendall",
+    year: "2026"
   }
 ];
 
 export const CURRENT_ROLES = [
+  {
+    image: "/roles/boundless.png",
+    role: "swe intern",
+    place: "boundless ai",
+    href: "https://www.getboundless.ai",
+    period: "now"
+  },
   { 
     image: "/roles/mcmaster.png", 
     role: "computer science", 
@@ -108,29 +122,22 @@ export const CURRENT_ROLES = [
     period: "now" 
   },
   {
-    image: "/roles/pareon.png",
-    role: "swe intern",
-    place: "pareon biosystems",
-    href: "https://www.pareonbiosystems.com/",
-    period: "now"
-  },
-  {
     image: "/roles/deltahacks.png",
     role: "technical exec",
     place: "deltahacks",
     href: "https://www.deltahacks.com",
     period: "now"
   },
-  { 
-    image: "/roles/zebra-rob.png", 
-    role: "instructor", 
-    place: "zebra robotics", 
-    href: "https://www.zebrarobotics.com", 
-    period: "now" 
-  },
 ];
 
 export const PREVIOUS_ROLES = [
+    {
+    image: "/roles/pareon.png",
+    role: "swe intern",
+    place: "pareon biosystems",
+    href: "https://www.pareonbiosystems.com/",
+    period: "2026"
+  },
   { 
     image: "/roles/droneclub.png", 
     role: "software", 
@@ -145,6 +152,7 @@ export const PREVIOUS_ROLES = [
     href: "https://www.careereducationcouncil.ca/", 
     period: "2023" 
   },
+
 ];
 
 
